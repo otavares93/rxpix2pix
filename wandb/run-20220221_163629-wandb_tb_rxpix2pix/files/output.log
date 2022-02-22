@@ -1,0 +1,120 @@
+create web directory ./checkpoints/teste_rxpix2pix/web...
+learning rate 0.0002000 -> 0.0002000
+/usr/local/lib/python3.7/dist-packages/torch/optim/lr_scheduler.py:134: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  "https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate", UserWarning)
+/usr/local/lib/python3.7/dist-packages/torch/utils/data/dataloader.py:481: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  cpuset_checked))
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+(epoch: 1, iters: 100, time: 0.075, data: 2.581) G_GAN: 0.723 G_L1: 21.983 D_real: 1.212 D_fake: 0.426
+(epoch: 1, iters: 200, time: 0.078, data: 37.687) G_GAN: 1.141 G_L1: 10.650 D_real: 0.619 D_fake: 0.695
+End of epoch 1 / 11 	 Time Taken: 84 sec
+learning rate 0.0002000 -> 0.0002000
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+(epoch: 2, iters: 66, time: 0.101, data: 73.248) G_GAN: 1.013 G_L1: 16.706 D_real: 0.925 D_fake: 0.488
+(epoch: 2, iters: 166, time: 1.695, data: 25.358) G_GAN: 0.831 G_L1: 10.513 D_real: 0.698 D_fake: 0.481
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+OrderedDict([('real_A', tensor([[[[-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          ...,
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.]],
+         [[-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          ...,
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.]],
+         [[-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          ...,
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.],
+          [-1., -1., -1.,  ..., -1., -1., -1.]]]], device='cuda:0')), ('fake_B', tensor([[[[-6.1346e-02, -1.0686e-02, -3.0637e-01,  ..., -1.5587e-05,
+           -3.7545e-01, -7.2762e-02],
+          [-1.5393e-02, -2.5385e-01, -4.3374e-01,  ..., -4.1316e-01,
+           -1.8957e-01, -5.1538e-02],
+          [-1.6896e-01, -3.6197e-01, -2.1619e-01,  ..., -4.9843e-01,
+           -3.4977e-01,  9.7589e-03],
+          ...,
+          [ 5.9853e-02, -2.8588e-01, -3.0451e-01,  ..., -6.6495e-01,
+           -9.4487e-02,  2.7306e-01],
+          [-6.0738e-02, -1.7086e-01, -2.5609e-01,  ...,  1.6986e-02,
+           -6.1964e-01,  1.9772e-01],
+          [-7.6020e-02,  1.1916e-01,  1.4997e-01,  ..., -8.5824e-02,
+            1.5365e-01, -2.0496e-01]],
+         [[-1.0499e-01, -8.6246e-02, -4.4740e-02,  ..., -8.1040e-02,
+           -1.2958e-01,  6.7838e-02],
+          [ 3.0638e-02,  1.6033e-01,  5.3921e-02,  ...,  2.3390e-01,
+            1.8211e-01,  8.2328e-02],
+          [-1.1117e-01,  2.6586e-01, -2.3766e-01,  ...,  2.4627e-01,
+            1.5516e-01,  1.0642e-01],
+          ...,
+          [ 6.5440e-02, -1.8362e-01,  1.1521e-02,  ..., -3.1591e-01,
+           -4.0400e-01,  8.2523e-02],
+          [-6.0429e-02,  4.5009e-01,  1.5044e-01,  ..., -6.2707e-03,
+            2.3715e-02,  8.3999e-02],
+          [-1.6769e-01, -2.0240e-02, -2.3784e-01,  ...,  2.0633e-01,
+           -5.9538e-02, -2.4775e-02]],
+         [[-7.4626e-02, -2.1013e-01,  2.8255e-01,  ..., -2.7544e-01,
+            3.3323e-01, -1.3925e-01],
+          [-1.9777e-01,  3.8924e-01, -4.6318e-01,  ...,  4.7898e-01,
+           -1.4684e-01,  4.0302e-01],
+          [-1.6533e-01,  2.1981e-01,  3.4793e-01,  ...,  4.4016e-01,
+            5.0690e-01,  1.0295e-01],
+          ...,
+          [ 7.9090e-02,  3.7591e-01, -2.1513e-01,  ...,  4.6192e-01,
+           -2.0069e-01,  3.8631e-01],
+          [-1.1958e-01,  1.4630e-01,  2.7329e-01,  ...,  5.9452e-01,
+            2.4943e-01, -5.2618e-02],
+          [-1.9965e-02,  1.0004e-01, -1.6248e-01,  ...,  1.1584e-01,
+            4.5197e-03,  5.8918e-02]]]], device='cuda:0')), ('real_B', tensor([[[[-0.9765, -0.9765, -0.9765,  ..., -0.9686, -0.9608, -0.9608],
+          [-0.9765, -0.9765, -0.9686,  ..., -0.9686, -0.9686, -0.9686],
+          [-0.9686, -0.9686, -0.9686,  ..., -0.9686, -0.9686, -0.9686],
+          ...,
+          [ 0.0824,  0.1294,  0.1843,  ..., -0.9294, -0.9294, -0.9294],
+          [ 0.0588,  0.1294,  0.1843,  ..., -0.9294, -0.9373, -0.9373],
+          [ 0.0353,  0.1216,  0.1765,  ..., -0.9373, -0.9373, -0.9373]],
+         [[-0.9765, -0.9765, -0.9765,  ..., -0.9686, -0.9608, -0.9608],
+          [-0.9765, -0.9765, -0.9686,  ..., -0.9686, -0.9686, -0.9686],
+          [-0.9686, -0.9686, -0.9686,  ..., -0.9686, -0.9686, -0.9686],
+          ...,
+          [ 0.0824,  0.1294,  0.1843,  ..., -0.9294, -0.9294, -0.9294],
+          [ 0.0588,  0.1294,  0.1843,  ..., -0.9294, -0.9373, -0.9373],
+          [ 0.0353,  0.1216,  0.1765,  ..., -0.9373, -0.9373, -0.9373]],
+         [[-0.9765, -0.9765, -0.9765,  ..., -0.9686, -0.9608, -0.9608],
+          [-0.9765, -0.9765, -0.9686,  ..., -0.9686, -0.9686, -0.9686],
+          [-0.9686, -0.9686, -0.9686,  ..., -0.9686, -0.9686, -0.9686],
+          ...,
+          [ 0.0824,  0.1294,  0.1843,  ..., -0.9294, -0.9294, -0.9294],
+          [ 0.0588,  0.1294,  0.1843,  ..., -0.9294, -0.9373, -0.9373],
+          [ 0.0353,  0.1216,  0.1765,  ..., -0.9373, -0.9373, -0.9373]]]],
+       device='cuda:0'))])
+/usr/local/lib/python3.7/dist-packages/torchvision/transforms/transforms.py:288: UserWarning: Argument interpolation should be of type InterpolationMode instead of int. Please, use InterpolationMode enum.
+  "Argument interpolation should be of type InterpolationMode instead of int. "
+Traceback (most recent call last):
+  File "train.py", line 126, in <module>
+    val_kl_rr, val_js_rr = calculate_divergences(visuals_val['realB'], visuals_val['realB'])
+KeyError: 'realB'
