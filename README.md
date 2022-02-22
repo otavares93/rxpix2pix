@@ -1,9 +1,7 @@
 
-<img src='imgs/horse2zebra.gif' align="right" width=384>
-
 
 ## Citation
-If you use this code for your research, please cite our papers.
+If you use this code for your research, please cite these papers.
 ```
 @inproceedings{CycleGAN2017,
   title={Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks},
@@ -19,20 +17,22 @@ If you use this code for your research, please cite our papers.
   booktitle={Computer Vision and Pattern Recognition (CVPR), 2017 IEEE Conference on},
   year={2017}
 }
+
+@INPROCEEDINGS{CBIC2021-135,
+    AUTHOR=		{Otto Tavares Nascimento and Jos\'e Manoel de Seixas and Anete Trajman},
+    TITLE=		{Data-augmentation de dados de radiografia de torax no contexto de aprendizagem profunda},
+    PAGES=		{1-7},
+    BOOKTITLE=	{Anais do 15 Congresso Brasileiro de Intelig\^encia Computacional},
+    EDITOR=		{Carmelo Jos'e Albanez Bastos Filho and Hugo Valadares Siqueira and Danton Diego Ferreira and Douglas Wildgrube Bertol and Roberto C'elio Lim\~ao de Oliveira},
+    PUBLISHER=	{SBIC},
+    ADDRESS=	{Joinville, SC},
+    YEAR=		{2021}
+  }
+
+  @inproceedings{xing2019pairwise,
+  title={Adversarial Pulmonary Pathology Translation for Pairwise Chest X-ray Data   Augmentation},
+  author={Xing, Yunyan and Ge, Zongyuan and Zeng, Rui and Mahapatra, Dwarikanath and Seah, Jarrel and Law, Meng and Drummond, Tom},
+  booktitle={International Conference on Medical Image Computing and Computer Assisted Intervention (MICCAI)},
+  year={2019}
+  }
 ```
-
-## Other Languages
-[Spanish](docs/README_es.md)
-
-## Related Projects
-**[contrastive-unpaired-translation](https://github.com/taesungp/contrastive-unpaired-translation) (CUT)**<br>
-**[CycleGAN-Torch](https://github.com/junyanz/CycleGAN) |
-[pix2pix-Torch](https://github.com/phillipi/pix2pix) | [pix2pixHD](https://github.com/NVIDIA/pix2pixHD)|
-[BicycleGAN](https://github.com/junyanz/BicycleGAN) | [vid2vid](https://tcwang0509.github.io/vid2vid/) | [SPADE/GauGAN](https://github.com/NVlabs/SPADE)**<br>
-**[iGAN](https://github.com/junyanz/iGAN) | [GAN Dissection](https://github.com/CSAILVision/GANDissect) | [GAN Paint](http://ganpaint.io/)**
-
-## Cat Paper Collection
-If you love cats, and love reading cool graphics, vision, and learning papers, please check out the Cat Paper [Collection](https://github.com/junyanz/CatPapers).
-
-## Acknowledgments
-Our code is inspired by [pytorch-DCGAN](https://github.com/pytorch/examples/tree/master/dcgan).
