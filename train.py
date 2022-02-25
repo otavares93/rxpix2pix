@@ -20,6 +20,7 @@ See frequently asked questions at: https://github.com/junyanz/pytorch-CycleGAN-a
 """
 import time
 import numpy as np
+import torch
 from options.train_options import TrainOptions
 #from options.test_options import TestOptions
 from data import create_dataset
@@ -27,13 +28,13 @@ from models import create_model
 from util.visualizer import Visualizer
 from util.stats import calculate_divergences, calculate_l1_and_l2_norm_errors
 
-def calculate_divergences( real_samples, fake_samples ):
-  kl, js = calculate_divergences(real_samples, fake_samples)
-  return np.mean(kl), np.mean(js)
+#def calculate_divergences( real_samples, fake_samples ):
+#  kl, js = calculate_divergences(real_samples, fake_samples)
+#  return np.mean(kl), np.mean(js)
 
-def calculate_l1_and_l2_norm_errors( real_samples, fake_samples):
-  l1, l2 = calculate_l1_and_l2_norm_errors( real_samples, fake_samples )
-  return np.mean(l1),  np.mean(l2)
+#def calculate_l1_and_l2_norm_errors( real_samples, fake_samples):
+#  l1, l2 = calculate_l1_and_l2_norm_errors( real_samples, fake_samples )
+#  return np.mean(l1),  np.mean(l2)
 
 if __name__ == '__main__':
     opt = TrainOptions().parse()   # get training options
@@ -77,6 +78,7 @@ if __name__ == '__main__':
 
             if total_iters % opt.print_freq == 0:    # print training losses and save logging information to the disk
                 losses = model.get_current_losses()
+                print(losses)
                 t_comp = (time.time() - iter_start_time) / opt.batch_size
                 visualizer.print_current_losses(epoch, epoch_iter, losses, t_comp, t_data)
                 if opt.display_id > 0:
@@ -87,26 +89,27 @@ if __name__ == '__main__':
                 save_suffix = 'iter_%d' % total_iters if opt.save_by_iter else 'latest'
                 model.save_networks(save_suffix)
 
-            if total_iters % opt.val_freq == 0: # calling validation routine for evaluating the generator
-              real_imgs = []
-              fake_imgs = []
-              for i, data_val in enumerate(dataset_val):
-                if i >= opt.num_val:
-                  break
-                model.set_input(data_val)  # unpack data from data loader
-                model.test()
-                visuals_val = model.get_current_visuals()  # get image results
-                real_imgs.append(visuals_val['real_B'].tolist())
-                fake_imgs.append(visuals_val['fake_B'].tolist())
-                    #img_path = model_val.get_image_paths()  # get image paths
-              #val_kl_rr, val_js_rr = calculate_divergences(np.array(real_imgs) , np.array(real_imgs))
-              #val_kl_rf, val_js_rf = calculate_divergences( np.array(real_imgs) , np.array(fake_imgs))
-              #print(val_kl_rr)
-              #print('>>>')
-              #print(val_kl_rf)
-                    
-			
+        if total_iters % opt.val_freq == 0: # calling validation routine for evaluating the generator
+          real_imgs = []
+          fake_imgs = []
+          for i, data_val in enumerate(dataset_val):
+            if i >= opt.num_val:
+              break
+            model.set_input(data_val)  # unpack data from data loader
+            model.test()
+            visuals_val = model.get_current_visuals()  # get image results
+            realB = visuals_val['real_B']
+            fakeB = visuals_val['fake_B']
+            real_imgs.append(torch.flatten(realB).detach().cpu().numpy())
+            fake_imgs.append(torch.flatten(fakeB).detach().cpu().numpy())
+              
+          val_kl_rr, val_js_rr = calculate_divergences( np.array( real_imgs ) , np.array( real_imgs ))
+          val_kl_rf, val_js_rf = calculate_divergences( np.array( real_imgs ) , np.array( fake_imgs ))
+          print(np.mean(val_kl_rr))
+          print(np.mean(val_kl_rf))
+		
         iter_data_time = time.time()
+        print('end of validation step')
         if epoch % opt.save_epoch_freq == 0:              # cache our model every <save_epoch_freq> epochs
             print('saving the model at the end of epoch %d, iters %d' % (epoch, total_iters))
             model.save_networks('latest')

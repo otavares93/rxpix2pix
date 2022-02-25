@@ -68,7 +68,7 @@ class SkfoldDataset(BaseDataset):
         paired_path = opt.dataroot + '/AB'
 
         df = prepare_my_table(clinical_path, images_path, masks_path, combine=opt.dataset_action)
-        splits = stratified_train_val_test_splits(df, opt.seed)[opt.test]
+        splits = stratified_train_val_test_splits_bins(df, opt.seed)[opt.test]
         training_data = df.iloc[splits[opt.sort][0]]
         validation_data = df.iloc[splits[opt.sort][1]]
 
