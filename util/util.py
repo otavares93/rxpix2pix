@@ -25,7 +25,7 @@ def expand_folder( path , extension):
 def get_md5(path):
     return hashlib.md5(pathlib.Path(path).read_bytes()).hexdigest()
 
-def prepare_my_table(clinical_path, images_path, masks_path, combine = False):
+def prepare_my_table(clinical_path, images_path, masks_path, paired_path, combine = False):
     d = {
         'target': [],
         'image_ID': [],
@@ -72,7 +72,8 @@ def prepare_my_table(clinical_path, images_path, masks_path, combine = False):
                     #print(image_path[-17:])
                     #print(mask[-17:])
                     d['mask_image_path'][idx] = mask
-                    path_paired = image_path[:-19] + 'AB'
+                    if path_paired is None:
+                        path_paired = image_path[:-19] + 'AB'
                     path_paired_img = path_paired + '/' + image_path[-17:]
                     #print(path_paired_img)
                     d['paired_image_path'][idx] = path_paired_img
@@ -82,7 +83,7 @@ def prepare_my_table(clinical_path, images_path, masks_path, combine = False):
                         im_B = cv2.imread(image_path)
                         im_A = cv2.imread(mask)
                         im_AB = np.concatenate([im_A, im_B], 1)
-                        #cv2.imwrite(path_paired_img, im_AB)
+                        cv2.imwrite(path_paired_img, im_AB)
 
     return pd.DataFrame(d)
 

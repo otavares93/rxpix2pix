@@ -73,12 +73,12 @@ class SkfoldDataset(BaseDataset):
         else:
             images_path = opt.custom_images_path
         if opt.custom_paired_path is None:
-            paired_path = opt.dataroot + '/AB'
+            paired_path = opt.dataroot #+ '/AB'
         else:
             paired_path = opt.custom_paired_path
 
         if opt.generate_paths_data_csv:
-            df = prepare_my_table(clinical_path, images_path, masks_path, combine=opt.dataset_action)
+            df = prepare_my_table(clinical_path, images_path, masks_path, paired_path, combine=opt.dataset_action)
             df.to_csv('Shenzhen_pix2pix_table_from_raw.csv')
         else:
             df = pd.read_csv('Shenzhen_pix2pix_table_from_raw.csv')
