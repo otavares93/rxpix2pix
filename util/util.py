@@ -25,7 +25,7 @@ def expand_folder( path , extension):
 def get_md5(path):
     return hashlib.md5(pathlib.Path(path).read_bytes()).hexdigest()
 
-def prepare_my_table(clinical_path, images_path, masks_path, paired_path, combine = False):
+def prepare_my_table(clinical_path, images_path, masks_path, path_paired, combine = False):
     d = {
         'target': [],
         'image_ID': [],

@@ -73,7 +73,7 @@ class SkfoldDataset(BaseDataset):
         else:
             images_path = opt.custom_images_path
         if opt.custom_paired_path is None:
-            paired_path = opt.dataroot #+ '/AB'
+            paired_path = opt.dataroot + '/AB'
         else:
             paired_path = opt.custom_paired_path
 
