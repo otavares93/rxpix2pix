@@ -39,15 +39,15 @@ from util.stats import calculate_divergences, calculate_l1_and_l2_norm_errors
 if __name__ == '__main__':
     opt = TrainOptions().parse()   # get training options
     dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
-    opt.train_dataset = False      #fliping train dataset flag for defining val dataset
-    dataset_val = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
-    opt.train_dataset = True       #fliping back train dataset flag for train
+    #opt.train_dataset = False      #fliping train dataset flag for defining val dataset
+    #dataset_val = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
+    #opt.train_dataset = True       #fliping back train dataset flag for train
     dataset_size = len(dataset)    # get the number of images in the dataset.
-    dataset_val_size = len(dataset_val)  # get the number of images in the dataset.
+    #dataset_val_size = len(dataset_val)  # get the number of images in the dataset.
     #opt_val = TestOptions().parse()
     # dataset_val = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
     print('The number of training images = %d' % dataset_size)
-    print('The number of val images = %d' % dataset_val_size)
+    #print('The number of val images = %d' % dataset_val_size)
 
     model = create_model(opt)      # create a model given opt.model and other options
     model.setup(opt)               # regular setup: load and print networks; create schedulers
@@ -69,7 +69,7 @@ if __name__ == '__main__':
             epoch_iter += opt.batch_size
             model.set_input(data)         # unpack data from dataset and apply preprocessing
             model.optimize_parameters()   # calculate loss functions, get gradients, update network weights
-            
+
             if total_iters % opt.display_freq == 0:   # display images on visdom and save images to a HTML file
                 save_result = total_iters % opt.update_html_freq == 0
                 model.compute_visuals()
@@ -89,25 +89,25 @@ if __name__ == '__main__':
                 save_suffix = 'iter_%d' % total_iters if opt.save_by_iter else 'latest'
                 model.save_networks(save_suffix)
 
-        if total_iters % opt.val_freq == 0: # calling validation routine for evaluating the generator
-          real_imgs = []
-          fake_imgs = []
-          for i, data_val in enumerate(dataset_val):
-            if i >= opt.num_val:
-              break
-            model.set_input(data_val)  # unpack data from data loader
-            model.test()
-            visuals_val = model.get_current_visuals()  # get image results
-            realB = visuals_val['real_B']
-            fakeB = visuals_val['fake_B']
-            real_imgs.append(torch.flatten(realB).detach().cpu().numpy())
-            fake_imgs.append(torch.flatten(fakeB).detach().cpu().numpy())
-              
-          val_kl_rr, val_js_rr = calculate_divergences( np.array( real_imgs ) , np.array( real_imgs ))
-          val_kl_rf, val_js_rf = calculate_divergences( np.array( real_imgs ) , np.array( fake_imgs ))
-          print(np.mean(val_kl_rr))
-          print(np.mean(val_kl_rf))
-		
+        #if total_iters % opt.val_freq == 0: # calling validation routine for evaluating the generator
+        #  real_imgs = []
+        #  fake_imgs = []
+        #  for i, data_val in enumerate(dataset_val):
+        #    if i >= opt.num_val:
+        #      break
+        #    model.set_input(data_val)  # unpack data from data loader
+        #    model.test()
+        #    visuals_val = model.get_current_visuals()  # get image results
+        #    realB = visuals_val['real_B']
+        #    fakeB = visuals_val['fake_B']
+        #    real_imgs.append(torch.flatten(realB).detach().cpu().numpy())
+        #    fake_imgs.append(torch.flatten(fakeB).detach().cpu().numpy())
+
+        #  val_kl_rr, val_js_rr = calculate_divergences( np.array( real_imgs ) , np.array( real_imgs ))
+        #  val_kl_rf, val_js_rf = calculate_divergences( np.array( real_imgs ) , np.array( fake_imgs ))
+        #  print(np.mean(val_kl_rr))
+        #  print(np.mean(val_kl_rf))
+
         iter_data_time = time.time()
         print('end of validation step')
         if epoch % opt.save_epoch_freq == 0:              # cache our model every <save_epoch_freq> epochs
