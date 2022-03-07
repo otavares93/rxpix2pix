@@ -14,9 +14,9 @@ You need to implement the following functions:
 from data.base_dataset import BaseDataset, get_params, get_transform
 from data.image_folder import make_dataset
 from PIL import Image
-from util.stratified_kfold import stratified_train_val_test_splits
+from util.stratified_kfold import stratified_train_val_test_splits_bins
 from util.util import prepare_my_table
-#import pandas as pd
+import pandas as pd
 #import numpy as np
 import os, sys
 #import glob
@@ -63,11 +63,24 @@ class SkfoldDataset(BaseDataset):
         ####
 
         clinical_path = opt.dataroot + '/ClinicalReadings'
-        masks_path = opt.dataroot + '/A'
-        images_path = opt.dataroot + '/B'
-        paired_path = opt.dataroot + '/AB'
+        if opt.custom_masks_path is None:
+            masks_path = opt.dataroot + '/A'
+        else:
+            masks_path = opt.custom_masks_path
+        if opt.custom_images_path is None:
+            images_path = opt.dataroot + '/B'
+        else:
+            images_path = opt.custom_images_path
+        if opt.custom_paired_path is None:
+            paired_path = opt.dataroot + '/AB'
+        else:
+            paired_path = opt.custom_paired_path
 
-        df = prepare_my_table(clinical_path, images_path, masks_path, combine=opt.dataset_action)
+        if opt.generate_paths_data_csv:
+            df = prepare_my_table(clinical_path, images_path, masks_path, combine=opt.dataset_action)
+            df.to_csv('Shenzhen_pix2pix_table_from_raw.csv')
+        else:
+            df = pd.read_csv('Shenzhen_pix2pix_table_from_raw.csv')
         splits = stratified_train_val_test_splits_bins(df, opt.seed)[opt.test]
         training_data = df.iloc[splits[opt.sort][0]]
         validation_data = df.iloc[splits[opt.sort][1]]
