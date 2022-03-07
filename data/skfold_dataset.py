@@ -62,7 +62,8 @@ class SkfoldDataset(BaseDataset):
         #self.AB_paths = sorted(make_dataset(self.dir_AB, opt.max_dataset_size))  # get image paths
         ####
 
-        clinical_path = opt.dataroot + '/ClinicalReadings'
+        #clinical_path = opt.dataroot + '/ClinicalReadings'
+        clinical_path = opt.dataroot + '/raw/clinical'
         if opt.custom_masks_path is None:
             masks_path = opt.dataroot + '/A'
         else:
