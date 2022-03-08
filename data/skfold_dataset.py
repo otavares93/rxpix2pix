@@ -103,7 +103,7 @@ class SkfoldDataset(BaseDataset):
                 self.AB_paths = [img_path for img_path in self.val_ntb['paired_image_path'].tolist() if img_path != '']
         # get the image paths of your dataset;
          # You can call sorted(make_dataset(self.root, opt.max_dataset_size)) to get all the image paths under the directory self.root
-        print(self.AB_paths)
+        #print(self.AB_paths)
         # define the default transform function. You can use <base_dataset.get_transform>; You can also define your custom transform function
         #self.transform = get_transform(opt)
 
