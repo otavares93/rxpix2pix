@@ -67,7 +67,7 @@ class BaseOptions():
         parser.add_argument('--verbose', action='store_true', help='if specified, print more debugging information')
         parser.add_argument('--suffix', default='', type=str, help='customized suffix: opt.name = opt.name + suffix: e.g., {model}_{netG}_size{load_size}')
         #domain-related parameters
-        parser.add_argument('--isTB', type= bool, default = True, help='if specified, call model for TB class. If not specified, call the model for NTB class')
+        parser.add_argument('--isTB', action='store_true', help='if specified, call model for TB class. If not specified, call the model for NTB class')
         self.initialized = True
         return parser
 
