@@ -82,7 +82,7 @@ class SkfoldDataset(BaseDataset):
             df.to_csv('Shenzhen_pix2pix_table_from_raw.csv')
         else:
             df = pd.read_csv('Shenzhen_pix2pix_table_from_raw.csv')
-        splits = stratified_train_val_test_splits_bins(df, opt.seed)[opt.test]
+        splits = stratified_train_val_test_splits_bins(df, opt.n_folds, opt.seed)[opt.test]
         training_data = df.iloc[splits[opt.sort][0]]
         validation_data = df.iloc[splits[opt.sort][1]]
 
