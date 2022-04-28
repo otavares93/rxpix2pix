@@ -1,0 +1,52 @@
+----------------- Options ---------------
+             aspect_ratio: 1.0                           
+               batch_size: 1                             
+          checkpoints_dir: ./checkpoints                 
+                crop_size: 256                           
+       custom_images_path: /content/gdrive/MyDrive/pix2pix/data/unaligned/B	[default: None]
+        custom_masks_path: /content/gdrive/MyDrive/pix2pix/data/unaligned/A	[default: None]
+       custom_paired_path: /content/gdrive/MyDrive/pix2pix/data/unaligned/AB	[default: None]
+                 dataroot: /content/gdrive/MyDrive/pix2pix/data/unaligned	[default: None]
+           dataset_action: False                         
+             dataset_mode: skfold                        	[default: aligned]
+                direction: AtoB                          
+          display_winsize: 256                           
+                    epoch: latest                        
+                     eval: False                         
+  generate_paths_data_csv: True                          	[default: False]
+                  gpu_ids: 0                             
+                init_gain: 0.02                          
+                init_type: normal                        
+                 input_nc: 3                             
+                     isTB: True                          	[default: False]
+                  isTrain: False                         	[default: None]
+          is_resume_wandb: False                         
+                load_iter: 0                             	[default: 0]
+                load_size: 256                           
+         max_dataset_size: inf                           
+                    model: pix2pix                       	[default: test]
+                  n_folds: 10                            
+               n_layers_D: 3                             
+                     name: fold                          	[default: experiment_name]
+                      ndf: 64                            
+                     netD: basic                         
+                     netG: unet_256                      
+                      ngf: 64                            
+               no_dropout: False                         
+                  no_flip: False                         
+                     norm: batch                         
+                 num_test: 50                            
+              num_threads: 4                             
+                output_nc: 3                             
+                    phase: test                          
+               preprocess: resize_and_crop               
+              results_dir: ./results/                    
+                     seed: 512                           	[default: 512]
+           serial_batches: False                         
+                     sort: 0                             
+                   suffix:                               
+                     test: 0                             
+                use_wandb: False                         
+                  verbose: False                         
+            wandb_fold_id: None                          
+----------------- End -------------------

@@ -52,24 +52,33 @@ if __name__ == '__main__':
     opt.serial_batches = True  # disable data shuffling; comment this line if results on randomly chosen images are needed.
     opt.no_flip = True    # no flip; comment this line if results on flipped images are needed.
     opt.display_id = -1   # no visdom display; the test code saves the results to a HTML file.
-    div = {
-        'model_iter': [],
-        'js_rr': [],
-        'js_rf': [],
-        'kl_rr': [],
-        'kl_rf': [],
-    }
     opt.dataroot_aux = opt.dataroot
     opt.name_aux = opt.name
     for fold in range(opt.n_folds):
         opt.test = fold
         if opt.isTB:
-            path_ext = '_tb/KL.csv'
+            path_div_ext = '_tb_cluster/KL_JS.csv'
+            path_norm_ext = '_tb_cluster/L1_L2.csv'
             opt.name = opt.name_aux + str(fold) + '_tb_cluster'
         else:
-            path_ext = '_ntb/KL.csv'
+            path_div_ext = '_ntb_cluster/KL_JS.csv'
+            path_norm_ext = '_ntb_cluster/L1_L2.csv'
             opt.name = opt.name_aux + str(fold) + '_ntb_cluster'
         dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
+        div = {
+            'model_iter': [],
+            'js_rr': [],
+            'js_rf': [],
+            'kl_rr': [],
+            'kl_rf': [],
+        }
+        norm_l1_l2 = {
+            'model_iter': [],
+            'l1_rr': [],
+            'l1_rf': [],
+            'l2_rr': [],
+            'l2_rf': [],
+        }
         for model_iter in [200, 400, 600, 800, 1000]:
             opt.load_iter = model_iter
             model = create_model(opt)      # create a model given opt.model and other options
@@ -109,12 +118,23 @@ if __name__ == '__main__':
                 save_images(webpage, visuals, img_path, aspect_ratio=opt.aspect_ratio, width=opt.display_winsize, use_wandb=opt.use_wandb)
             val_kl_rr, val_js_rr = stats.calculate_divergences( np.array( real_imgs ) , np.array( real_imgs ))
             val_kl_rf, val_js_rf = stats.calculate_divergences( np.array( real_imgs ) , np.array( fake_imgs ))
+            val_l1_rr, val_l2_rr = stats.calculate_l1_and_l2_norm_errors(  np.array( real_imgs )  ,   np.array( real_imgs ) )
+            val_l1_rf, val_l2_rf = stats.calculate_l1_and_l2_norm_errors(  np.array( real_imgs )  ,   np.array( fake_imgs ) )
+            #calculating js and kl divergences
             div['model_iter'].append(model_iter)
             div['js_rr'].append(val_js_rr)
             div['js_rf'].append(val_js_rf)
             div['kl_rr'].append(val_kl_rr)
             div['kl_rf'].append(val_kl_rf)
+            #calculating l1 and l2 norms
+            norm_l1_l2['model_iter'].append(model_iter)
+            norm_l1_l2['l1_rr'].append(val_l1_rr)
+            norm_l1_l2['l1_rf'].append(val_l1_rf)
+            norm_l1_l2['l2_rr'].append(val_l2_rr)
+            norm_l1_l2['l2_rf'].append(val_l2_rf)
 
             webpage.save()  # save the HTML
-        path_csv = './results/fold' + str(fold) + path_ext
-        pd.DataFrame(div).to_csv(path_csv)
+        path_div_csv = './results/fold' + str(fold) + path_div_ext
+        path_norm_csv = './results/fold' + str(fold) + path_norm_ext
+        pd.DataFrame(div).to_csv(path_div_csv)
+        pd.DataFrame(norm_l1_l2).to_csv(path_norm_csv)

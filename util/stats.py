@@ -57,8 +57,10 @@ def calculate_divergences(real_samples, fake_samples):
     l1 = []
     for r_idx, f_idx in itertools.permutations(list(range(real_samples.shape[0])), 2):
         # Int_inf_to_plus_int p(x)/(dx*total) * dx = 1
-        real_pdf, bins = np.histogram(real_samples[r_idx].flatten(), bins=100, range=(0, 1), density=True)
-        fake_pdf, bins = np.histogram(fake_samples[f_idx].flatten(), bins=100, range=(0, 1), density=True)
+        #real_pdf, bins = np.histogram(real_samples[r_idx].flatten(), bins=100, range=(0, 1), density=True)
+        real_pdf, bins = np.histogram(real_samples[r_idx], bins=100, range=(0, 1), density=True)
+        #fake_pdf, bins = np.histogram(fake_samples[f_idx].flatten(), bins=100, range=(0, 1), density=True)
+        fake_pdf, bins = np.histogram(fake_samples[f_idx], bins=100, range=(0, 1), density=True)
         kl.append(integrate(calc_kl(pk=real_pdf + eps, qk=fake_pdf + eps), dx=1 / 100))
         js.append(integrate(calc_js(pk=real_pdf + eps, qk=fake_pdf + eps), dx=1 / 100))
     return kl, js
@@ -72,11 +74,14 @@ def calculate_l1_and_l2_norm_errors(real_samples, fake_samples):
     l2 = []
     for r_idx, f_idx in itertools.permutations(list(range(real_samples.shape[0])), 2):
         # height x width
-        hw = len(real_samples[r_idx]) * len(real_samples[r_idx][0])
+        #hw = len(real_samples[r_idx]) * len(real_samples[r_idx][0])
+        hw = len(real_samples[r_idx])
         # calculate l1
-        l1.append(sum(sum(abs(real_samples[r_idx] - fake_samples[f_idx])))[0] / hw)
+        #l1.append(sum(sum(abs(real_samples[r_idx] - fake_samples[f_idx])))[0] / hw)
+        l1.append(np.sum(np.sum(abs(real_samples[r_idx] - fake_samples[f_idx]))) / hw)
         # calculate l2
         # l2_norm_error = 1/HW * Sum ( (y-yhat)**2 )
-        l2.append(sum(sum(np.power(real_samples[r_idx] - fake_samples[f_idx], 2)))[0] / hw)
+        #l2.append(sum(sum(np.power(real_samples[r_idx] - fake_samples[f_idx], 2)))[0] / hw)
+        l2.append(np.sum(np.sum(np.power(real_samples[r_idx] - fake_samples[f_idx], 2))) / hw)
 
     return l1, l2

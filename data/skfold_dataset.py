@@ -63,7 +63,7 @@ class SkfoldDataset(BaseDataset):
         ####
 
         #clinical_path = opt.dataroot + '/ClinicalReadings'
-        if not self.isTrain:
+        if opt.isTrain is False:
             opt.train_dataset = False
         clinical_path = opt.dataroot + '/raw/clinical'
         if opt.custom_masks_path is None:
